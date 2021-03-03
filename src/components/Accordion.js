@@ -1,18 +1,33 @@
-import AccordionItem from './AccordionItem';
+import React, { useState } from 'react';
 
 const Accordion = (props) => {
+    const [activeIndex, setActiveIndex] = useState(null);
+
     const onItemClick = (index) => {
-        console.log(index);
+        if ( index === activeIndex ) {
+            setActiveIndex(null);
+        } else {
+            setActiveIndex(index);
+        }
     }
 
     const renderedItems = props.items.map( (item, index) => {
+        const active = (index === activeIndex ? 'active' : '');
         return (
-            <AccordionItem
-                key={`item-${index}`}
-                item={item}
-                index={index}
-                onItemClick={() => onItemClick(index)}
-            />);
+            <React.Fragment>
+                <div
+                    className={`title ${active}`} 
+                    onClick={() => onItemClick(index)}
+                >
+                    <i className="dropdown icon"></i>
+                    {item.title}
+                </div>
+                <div className={`content ${active}`} >
+                    <p>{item.content}</p>
+                </div>
+            </React.Fragment>
+        );
+    
     });
 
     return (
