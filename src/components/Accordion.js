@@ -1,11 +1,17 @@
 import AccordionItem from './AccordionItem';
 
 const Accordion = (props) => {
-    const renderedItems = props.items.map( (item, i) => {
+    const onItemClick = (index) => {
+        console.log(index);
+    }
+
+    const renderedItems = props.items.map( (item, index) => {
         return (
             <AccordionItem
-                key={`item-${i}`}
+                key={`item-${index}`}
                 item={item}
+                index={index}
+                onItemClick={() => onItemClick(index)}
             />);
     });
 

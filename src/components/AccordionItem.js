@@ -5,6 +5,7 @@ const AccordionItem = (props) => {
         <React.Fragment>
             <div
                 className="active title"
+                onClick={props.onItemClick}
             >
                 <i className="dropdown icon"></i>
                 {props.item.title}
