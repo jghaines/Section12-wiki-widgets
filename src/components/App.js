@@ -1,4 +1,5 @@
 import Accordion from './Accordion';
+import Search from './Search';
 
 const items = [
   {
@@ -12,8 +13,11 @@ const items = [
 ];
 
 function App() {
+  // eslint-disable-next-line
+  const ignore = <Accordion items={items} />; 
+
   return (
-      <Accordion items={items} />
+      <Search />
   );
 }
 
