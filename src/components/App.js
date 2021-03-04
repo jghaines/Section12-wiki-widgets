@@ -1,4 +1,5 @@
 import Accordion from './Accordion';
+import Dropdown from './Dropdown';
 import Search from './Search';
 
 const items = [
@@ -12,12 +13,20 @@ const items = [
   },
 ];
 
+const colourOptions = [
+  { value: 'red', label:'Red' },
+  { value: 'green', label:'Green' },
+  { value: 'blue', label:'Blue' },
+];
+
 function App() {
   // eslint-disable-next-line
-  const ignore = <Accordion items={items} />; 
+  const _ignore = <Accordion items={items} />; 
+  // eslint-disable-next-line
+  const __ignore = <Search />;
 
   return (
-      <Search />
+      <Dropdown options={colourOptions} prompt="Select a colour" />
   );
 }
 
