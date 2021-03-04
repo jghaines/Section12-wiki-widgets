@@ -5,12 +5,17 @@ const Dropdown = ({ prompt, options, selected, onSelectedChange }) => {
     const ref = useRef();
 
     useEffect( () => {
-        document.body.addEventListener('click', e => {
+        const onBodyClick = e => {
             if ( ref.current && ref.current.contains(e.target)) {
                 return;
             }
             setIsOpen(false);
-        })
+        };
+        document.body.addEventListener('click', onBodyClick)
+
+        return () => {
+            document.body.removeEventListener('click', onBodyClick)
+        }
     }, []); // run-once
 
     const renderedOptions = options.map( option => {
