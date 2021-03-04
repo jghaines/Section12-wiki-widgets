@@ -8,8 +8,8 @@ const Search = (props) => {
 
     useEffect( () => {
         setResults([
-            { title: `Title ${term} #1`, snippet: 'Snippet', pageId: 5311, },
-            { title: `Title ${term} #2`, snippet: '<em>Snippet</em>', pageId: 5312, },
+            { title: `Title ${term} #1`, snippet: 'Snippet', pageid: 5311, },
+            { title: `Title ${term} #2`, snippet: '<em>Snippet</em>', pageid: 5312, },
         ]);
     
 
@@ -37,7 +37,15 @@ const Search = (props) => {
 
     const renderedResults = results.map( result => {
         return (
-            <div key={result.pageId} className="item">
+            <div key={result.pageid} className="item">
+                <div className="right floated content">
+                    <a 
+                        href={`https://en.wikipedia.org?curid=${result.pageid}`}
+                        className="ui button"
+                    >
+                        Go
+                    </a>
+                </div>
                 <div className="content">
                     <div className="header">
                         {result.title}
