@@ -7,11 +7,12 @@ const Search = (props) => {
     const [results, setResults] = useState([]);
 
     useEffect( () => {
-        setResults([
-            { title: `Title ${term} #1`, snippet: 'Snippet', pageid: 5311, },
-            { title: `Title ${term} #2`, snippet: '<em>Snippet</em>', pageid: 5312, },
-        ]);
-    
+        const search = () => {
+            setResults([
+                { title: `Title ${term} #1`, snippet: 'Snippet', pageid: 5311, },
+                { title: `Title ${term} #2`, snippet: '<em>Snippet</em>', pageid: 5312, },
+            ]);
+        }
 
 /*
         const search = async () => {
@@ -27,11 +28,24 @@ const Search = (props) => {
                 }
             );
             setResults(data.query.results);
-        }
-        if (term){
-            search();
-        }
+        };
 */
+        if ( term && !results.length ) { // on first load
+            search()
+        } else {
+            const timeoutId = setTimeout(
+                () => {
+                    if (term){
+                        search();
+                    }    
+                }, 500 /*ms*/
+            );
+    
+            return () => {
+                clearTimeout( timeoutId );
+            };
+        }
+
     }, [term]);
 
 
