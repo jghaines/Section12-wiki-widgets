@@ -3,6 +3,8 @@ import { useState } from "react";
 import Accordion from './Accordion';
 import Dropdown from './Dropdown';
 import Search from './Search';
+import Translate from './Translate';
+
 
 const items = [
   {
@@ -22,20 +24,24 @@ const colourOptions = [
 ];
 
 function App() {
+  const [selected, setSelected] = useState(colourOptions[0]);
+
   // eslint-disable-next-line
   const _ignore = <Accordion items={items} />; 
   // eslint-disable-next-line
   const __ignore = <Search />;
+  // eslint-disable-next-line
+  const ___ignore = <Dropdown
+    prompt="Select a colour"
+    options={colourOptions}
+    selected={selected}
+    onSelectedChange={setSelected}
+  />
+;
 
-  const [selected, setSelected] = useState(colourOptions[0]);
 
   return (
-      <Dropdown
-        prompt="Select a colour"
-        options={colourOptions}
-        selected={selected}
-        onSelectedChange={setSelected}
-      />
+    <Translate />
   );
 }
 
