@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Accordion from './Accordion';
 import Dropdown from './Dropdown';
 import Search from './Search';
@@ -25,8 +27,15 @@ function App() {
   // eslint-disable-next-line
   const __ignore = <Search />;
 
+  const [selected, setSelected] = useState(colourOptions[0]);
+
   return (
-      <Dropdown options={colourOptions} prompt="Select a colour" />
+      <Dropdown
+        prompt="Select a colour"
+        options={colourOptions}
+        selected={selected}
+        onSelectedChange={setSelected}
+      />
   );
 }
 

@@ -1,7 +1,11 @@
-const Dropdown = props => {
-    const renderedOptions = props.options.map( option => {
+const Dropdown = ({ prompt, options, selected, onSelectedChange }) => {
+    const renderedOptions = options.map( option => {
         return (
-            <div key={option.value} className="item">
+            <div
+                key={option.value}
+                onClick={ () => onSelectedChange(option) }
+                className="item" 
+            >
                 {option.label}
             </div>
         );
@@ -9,10 +13,10 @@ const Dropdown = props => {
     return (
         <div className="ui form">
             <div className="field">
-                <label className="label">{props.prompt}</label>
+                <label className="label">{prompt}</label>
                 <div className="ui selection dropdown visible active">
                     <i className="dropdown icon"></i>
-                    <div className="text">...</div>
+                    <div className="text">{selected.label}</div>
                     <div className="menu visible transition">
                         {renderedOptions}
                     </div>
