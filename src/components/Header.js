@@ -3,16 +3,16 @@ import Link from './Link';
 const Header = () => {
     return (
         <div className="ui secondary pointing menu">
-            <Link href="/" className="item">
+            <Link href="/" key="/" className="item">
                 Accordion
             </Link>
-            <Link href="/dropdown" className="item">
+            <Link href="/dropdown" key="/dropdown" className="item">
                 Dropdown
             </Link>
-            <Link href="/search" className="item">
+            <Link href="/search" key="/search" className="item">
                 Search
             </Link>
-            <Link href="/translate" className="item">
+            <Link href="/translate" key="/translate" className="item">
                 Translate
             </Link>
         </div>
