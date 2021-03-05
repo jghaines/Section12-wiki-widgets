@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import Convert from './Convert';
 import Dropdown from './Dropdown';
 
 const Translate = () => {
@@ -28,6 +29,8 @@ const Translate = () => {
                 selected={selectedLanguage}
                 onSelectedChange={setSelectedLanguage}
             />
+            <h3>Output</h3>
+            <Convert language={selectedLanguage} text={text} />
         </div>
     );
 }
