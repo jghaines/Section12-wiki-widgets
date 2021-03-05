@@ -5,7 +5,14 @@ import { useState, useEffect } from 'react';
 // const GOOGLE_API_KEY = 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM'; // provided by Stephen Grider for Referer localhost:3000 // cspell-disable-line
 
 const Convert = ({ language, text }) => {
+    const [debouncedText, setDebouncedText] = useState(text);
     const [translatedText, setTranslatedText] = useState('');
+
+    useEffect( () => {        
+        const debounce = () => setDebouncedText(text);
+        const timerId = setTimeout( debounce, 500 /*ms*/);
+        return () => clearTimeout(timerId, debounce);
+    }, [text]);
 
     useEffect( () => {
         // const doTranslation = async () => {
@@ -13,7 +20,7 @@ const Convert = ({ language, text }) => {
         //         {/*no body*/},
         //         {
         //             params: {
-        //                 q: text,
+        //                 q: debouncedText,
         //                 target: language.value,
         //                 key: GOOGLE_API_KEY,
         //             }
@@ -24,9 +31,8 @@ const Convert = ({ language, text }) => {
 
         // doTranslation();
 
-        setTranslatedText(`translated(${language.value}): ${text}`);
-    }, [language, text]);
-
+        setTranslatedText(`translated(${language.value}): ${debouncedText}`);
+    }, [language, debouncedText]);
 
     return (
         <div>
@@ -38,3 +44,4 @@ const Convert = ({ language, text }) => {
 }
 
 export default Convert;
+
