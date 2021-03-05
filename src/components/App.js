@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Accordion from './Accordion';
 import Dropdown from './Dropdown';
+import Header from './Header';
 import Route from './Route';
 import Search from './Search';
 import Translate from './Translate';
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <div>
+      <Header />
       <Route path='/'>
         <Accordion items={items} />
       </Route>
