@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Accordion from './Accordion';
 import Dropdown from './Dropdown';
+import Route from './Route';
 import Search from './Search';
 import Translate from './Translate';
 
@@ -26,22 +27,26 @@ const colourOptions = [
 function App() {
   const [selected, setSelected] = useState(colourOptions[0]);
 
-  // eslint-disable-next-line
-  const _ignore = <Accordion items={items} />; 
-  // eslint-disable-next-line
-  const __ignore = <Search />;
-  // eslint-disable-next-line
-  const ___ignore = <Dropdown
-    prompt="Select a colour"
-    options={colourOptions}
-    selected={selected}
-    onSelectedChange={setSelected}
-  />
-;
-
-
   return (
-    <Translate />
+    <div>
+      <Route path='/'>
+        <Accordion items={items} />
+      </Route>
+      <Route path='/dropdown'>
+        <Dropdown
+          prompt="Select a colour"
+          options={colourOptions}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
+      </Route>
+      <Route path='/search'>
+        <Search />
+      </Route>
+      <Route path='/translate'>
+        <Translate />
+      </Route>
+    </div>
   );
 }
 
