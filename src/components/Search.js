@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-//import axios from 'axios';
+import axios from 'axios';
 
 const Search = (props) => {
     const [term, setTerm] = useState('');
@@ -19,14 +19,6 @@ const Search = (props) => {
     }, [term]);
 
     useEffect( () => {
-        const search = () => {
-            setResults([
-                { title: `Title ${debouncedTerm} #1`, snippet: 'Snippet', pageid: 5311, },
-                { title: `Title ${debouncedTerm} #2`, snippet: '<em>Snippet</em>', pageid: 5312, },
-            ]);
-        }
-
-/*
         const search = async () => {
             const { data } = await axios.get(
                 'https://en.wikipedia.org/w/api.php', {
@@ -39,10 +31,12 @@ const Search = (props) => {
                     },
                 }
             );
-            setResults(data.query.results);
+            setResults(data.query.search);
         };
-*/
-        search();
+
+        if (debouncedTerm) {
+            search();
+        }
     }, [debouncedTerm]);
 
     const renderedResults = results.map( result => {
